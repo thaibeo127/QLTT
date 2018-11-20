@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>QUẢN LÝ TRUNG TÂM --- THÁI</title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="container-fluid">
+            <header>QUẢN LÝ TRUNG TÂM</header>
+            <!-- Phan tab menu -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#DanhSachNguoiDung" role="tab" data-toggle="tab">Danh sách người
+                        dùng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#DanhSachKhoaHoc" id="taga_DSKhoaHoc" role="tab" data-toggle="tab">Danh sách khóa học</a>
+                </li>
+                <div class="ml-auto">
+                    <span id="spanTKDangNhap"></span>
+                    <a href="signin.html" id="comeBack"></a>
+                </div>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!--Danh sách người dùng -->
+                <div role="tabpanel" class="tab-pane active" id="DanhSachNguoiDung">
+                    <div class="row py-4 text-center">
+                        <div class="col-lg-7 input-group">
+                            <input id="txtSearchUser" type="text" class="form-control" placeholder="Search for Account or Name . . .">
+                            <div class="input-group-append">
+                                <button id="btnTimDSKHTheoTK" class="btn">
+                                    Tìm danh sách Khóa Học đã đăng ký
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <select class="w-100 h-100 form-control px-2">
+                                <option>Phân loại người dùng:</option>
+                                <option>Giáo Vụ</option>
+                                <option>Học Viên</option>
+                            </select>
+                        </div>
+                        <div class="col-lg-3">
+                            <button data-toggle="modal" data-target="#myModal" id="btnThemNguoiDung" class="btn w-100">
+                                Thêm người dùng
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row tblNguoiDung" id="tblNguoiDung">
+                        <table class="table">
+                            <thead>
+                                <th>STT</th>
+                                <th>Tài khoản</th>
+                                <th>Mật khẩu</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Số điện thoại</th>
+                                <th>Phân loại</th>
+                                <th>Thao tác</th>
+                            </thead>
+                            <tbody id="tblDanhSachNguoiDung">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Kết thúc danh sách người dùng -->
+                <!-- Danh sách khóa học -->
+                <div role="tabpanel" class="tab-pane fade" id="DanhSachKhoaHoc">
+                    <div class="row py-4 text-center">
+                        <div class="col-lg-6 input-group">
+                            <input id="txtSearchCourse" type="text" class="form-control" placeholder="Search for Course Name . . .">
+                            <div class="input-group-append">
+                                <button id="btnTimTheoMaKH" class="btn">
+                                    Tìm theo mã khóa học
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <button data-toggle="collapse" data-target="#formGhiDanh" id="btnGhiDanh" class="btn w-100">
+                                Ghi danh
+                            </button>
+                        </div>
+                        <div class="col-lg-3">
+                            <button data-toggle="modal" data-target="#myModalCourse" id="btnThemKhoaHoc" class="btn w-100">
+                                Thêm khóa học
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Form ghi danh -->
+                    <div class="row collapse" id="formGhiDanh">
+                        <div class="col-6 mx-auto">
+                            <header class="display-5 text-center">Ghi Danh Học Viên</header>
+                            <div class="form-group">
+                                <label for="">Mã Khóa Học</label>
+                                <input type="text" class="form-control" id="maKhoaHocGhiDanh" />
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tài Khoản Học Viên</label>
+                                <input type="text" class="form-control" id="taiKhoanGhiDanh" />
+                            </div>
+                            <div class="text-center my-2">
+                                <button class="btn btn-success w-25" id="btnXacNhanGhiDanh">Xác Nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- hết Form ghi danh -->
+                    <div class="row tblNguoiDung" id="tblKhoaHoc">
+                        <table class="table">
+                            <thead>
+                                <th>STT</th>
+                                <th>Mã khóa học</th>
+                                <th>Tên khóa học</th>
+                                <th>Mô tả</th>
+                                <th>Hình ảnh</th>
+                                <th>Lượt xem</th>
+                                <th>Người tạo</th>
+                                <th>Thao tác</th>
+                            </thead>
+                            <tbody id="tblDanhSachKhoaHoc">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Kết thúc danh sách khóa học -->
+            </div>
+            <!--KetThuc Tabmenu-->
+            <!-- The Modal Người Dùng -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Tài khoản</label>
+                                <input id="TaiKhoan" class="form-control" placeholder="Nhập vào tài khoản">
+                            </div>
+                            <div class="form-group">
+                                <label>Họ tên</label>
+                                <input id="HoTen" class="form-control" placeholder="Nhập vào họ tên">
+                            </div>
+                            <div class="form-group">
+                                <label>Mật khẩu</label>
+                                <input id="MatKhau" class="form-control" placeholder="Nhập vào mật khẩu" type="password">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input id="Email" class="form-control" placeholder="Nhập vào Email">
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input id="SoDienThoai" class="form-control" placeholder="Nhập vào số điện thoại">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Loại Người Dùng</label>
+                                <select class="form-control" id="LoaiNguoiDung">
+                                    <option value="GV">Giáo vụ</option>
+                                    <option value="HV">Học viên</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- The Modal Khóa Học -->
+            <div class="modal fade" id="myModalCourse">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Mã khóa học</label>
+                                <input id="MaKhoaHoc" class="form-control" placeholder="Nhập vào mã khóa học">
+                            </div>
+                            <div class="form-group">
+                                <label>Tên khóa học</label>
+                                <input id="TenKhoaHoc" class="form-control" placeholder="Nhập vào tên khóa học">
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả</label>
+                                <input id="MoTa" class="form-control" placeholder="Nhập vào mô tả">
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh</label>
+                                <input id="HinhAnh" class="form-control" placeholder="Nhập vào Url hình ảnh">
+                            </div>
+                            <div class="form-group">
+                                <label>Lượt xem</label>
+                                <input id="LuotXem" class="form-control" placeholder="Nhập vào lượt xem">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Người tạo</label>
+                                <input id="NguoiTao" class="form-control" placeholder="Nhập vào tài khoản người tạo">
+                            </div>
+                        </div>
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
